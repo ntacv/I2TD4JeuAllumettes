@@ -112,14 +112,13 @@ namespace I2TD4JeuAllumettes
         }
         static int DemanderIndexARetirer(bool[] tasAllumerttes)
         {
-            Console.Write("Quelle position : ");
             int valeur = int.Parse(Console.ReadLine());
 
             while (valeur <= 0 && valeur > tasAllumerttes.Length)
             {
                 valeur = int.Parse(Console.ReadLine());
             }
-            return valeur;
+            return valeur-1;
 
         }
         static bool PartieGagnee(bool[] tasAllumettes)
@@ -213,7 +212,9 @@ namespace I2TD4JeuAllumettes
             {
                 Console.WriteLine(" à gagnée!");
             }
-            else { Console.WriteLine(" à perdu!"); }
+            else { 
+                Console.WriteLine(" à perdu!"); 
+            }
 
 
 
