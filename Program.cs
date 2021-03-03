@@ -12,7 +12,7 @@ namespace I2TD4JeuAllumettes
         static bool[] CreerTasAllumettes(int taille)
         {
             bool[] tableau = new bool[taille];
-            for(int i=0; i<tableau.Length; i++)
+            for (int i = 0; i < tableau.Length; i++)
             {
                 tableau[i] = true;
             }
@@ -21,9 +21,9 @@ namespace I2TD4JeuAllumettes
 
         static void AfficherTasAlumettes(bool[] tasAlumettes)
         {
-            for(int i=0;i<tasAlumettes.Length; i++)
+            for (int i = 0; i < tasAlumettes.Length; i++)
             {
-                Console.Write("  " + (i+1)+" ");
+                Console.Write("  " + (i + 1) + " ");
             }
             Console.WriteLine("");
             for (int i = 0; i < tasAlumettes.Length; i++)
@@ -56,7 +56,7 @@ namespace I2TD4JeuAllumettes
             bool position = false;
             if (tableau != null && tableau.Length != 0)
             {
-                if(index>=0 && index < tableau.Length)
+                if (index >= 0 && index < tableau.Length)
                 {
                     position = true;
                 }
@@ -68,12 +68,14 @@ namespace I2TD4JeuAllumettes
             bool possible;
             if (tasAllumettes != null && tasAllumettes.Length != 0)
             {
-                if(PositionValide(tasAllumettes, index))
+                if (PositionValide(tasAllumettes, index))
                 {
                     tasAllumettes[index] = false;
                     possible = true;
                 }
-                else { possible = false;
+                else
+                {
+                    possible = false;
                 }
             }
             else
@@ -85,10 +87,10 @@ namespace I2TD4JeuAllumettes
 
         static int NombreAllumettesRestantes(bool[] tasAllumettes)
         {
-            int allumettesRestant=0;
+            int allumettesRestant = 0;
             if (tasAllumettes != null && tasAllumettes.Length != 0)
             {
-                foreach(bool allumette in tasAllumettes)
+                foreach (bool allumette in tasAllumettes)
                 {
                     if (allumette)
                     {
@@ -103,8 +105,8 @@ namespace I2TD4JeuAllumettes
         {
 
             int valeur = int.Parse(Console.ReadLine());
-            
-            while (valeur<=0&&valeur>max)
+
+            while (valeur <= 0 && valeur > max)
             {
                 valeur = int.Parse(Console.ReadLine());
             }
@@ -118,7 +120,7 @@ namespace I2TD4JeuAllumettes
             {
                 valeur = int.Parse(Console.ReadLine());
             }
-            return valeur-1;
+            return valeur - 1;
 
         }
         static bool PartieGagnee(bool[] tasAllumettes)
@@ -137,7 +139,7 @@ namespace I2TD4JeuAllumettes
         static bool PartiePerdue(bool[] tasAllumettes)
         {
             bool perdu;
-            if(tasAllumettes==null || tasAllumettes.Length==0 || NombreAllumettesRestantes(tasAllumettes)==0)
+            if (tasAllumettes == null || tasAllumettes.Length == 0 || NombreAllumettesRestantes(tasAllumettes) == 0)
             {
                 perdu = true;
             }
@@ -147,7 +149,7 @@ namespace I2TD4JeuAllumettes
         static bool FinPartie(bool[] tasAllumettes)
         {
             bool FinPartie;
-            if (tasAllumettes != null && tasAllumettes.Length != 0 &&(PartieGagnee(tasAllumettes) || PartiePerdue(tasAllumettes)))
+            if (tasAllumettes != null && tasAllumettes.Length != 0 && (PartieGagnee(tasAllumettes) || PartiePerdue(tasAllumettes)))
             {
                 FinPartie = true;
             }
@@ -158,9 +160,10 @@ namespace I2TD4JeuAllumettes
 
         static void Main(string[] args)
         {
-
+            Console.Write("Nombre d'allumettes : ");
+            int nombreAllumettes = int.Parse(Console.ReadLine());
             //On initialise les allumettes
-            bool[] allumettes = CreerTasAllumettes(8);
+            bool[] allumettes = CreerTasAllumettes(nombreAllumettes);
 
 
 
@@ -174,7 +177,7 @@ namespace I2TD4JeuAllumettes
 
                 //Etape 1 ****** Qui joue
                 noJoueur = (noJoueur % 2) + 1;
-                Console.WriteLine(" C'est à " + noJoueur);
+                Console.WriteLine("C'est à " + noJoueur);
 
                 //Etape 2 ****** Le nombre d'allumettes à tirer
                 Console.WriteLine("Il reste " + NombreAllumettesRestantes(allumettes) + " d'allumettes");
@@ -183,7 +186,7 @@ namespace I2TD4JeuAllumettes
                 Console.Write("Nombre d'allumettes à retirer : ");
                 int nombreARetirer = DemanderNombreAllumettesARetirer(3);
 
-                for(int i=0; i<nombreARetirer; i++)
+                for (int i = 0; i < nombreARetirer; i++)
                 {
                     Console.Write("A quelle position : ");
                     int index = DemanderIndexARetirer(allumettes);
@@ -192,7 +195,7 @@ namespace I2TD4JeuAllumettes
                         RetirerUneAllumette(allumettes, index);
                     }
                 }
-                
+
 
 
 
@@ -200,7 +203,7 @@ namespace I2TD4JeuAllumettes
                 PartieGagnee(allumettes);
                 PartiePerdue(allumettes);
                 FinPartie(allumettes);
-                
+
 
 
             }
@@ -212,8 +215,9 @@ namespace I2TD4JeuAllumettes
             {
                 Console.WriteLine(" à gagnée!");
             }
-            else { 
-                Console.WriteLine(" à perdu!"); 
+            else
+            {
+                Console.WriteLine(" à perdu!");
             }
 
 
