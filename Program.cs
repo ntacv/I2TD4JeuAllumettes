@@ -25,14 +25,14 @@ namespace I2TD4JeuAllumettes
             for (int i = 0; i < tasAlumettes.Length; i++)
             {
                 if (i < 10){
-                    Console.Write("  " + (i + 1) + "  ");
+                    Console.Write("  " + (i + 1) + " ");
                 }
                 else{
                     Console.Write(" " + (i + 1) + " ");
                 }
 
             }
-
+             
 
             Console.WriteLine("");
             for (int i = 0; i < tasAlumettes.Length; i++)
@@ -59,7 +59,17 @@ namespace I2TD4JeuAllumettes
             }
             Console.WriteLine();
         }
+        static bool valeurValide(int valeur, int min, int max)
+        {
+            bool valide = false;
 
+            if(valeur<max && valeur > min)
+            {
+                valide = true;
+            }
+
+            return valide;
+        }
         static bool PositionValide(bool[] tableau, int index)
         {
             bool position = false;
@@ -171,8 +181,13 @@ namespace I2TD4JeuAllumettes
         {
             Console.Write("Nombre d'allumettes : ");
             int nombreAllumettes = int.Parse(Console.ReadLine());
+            
             //On initialise les allumettes
             bool[] allumettes = CreerTasAllumettes(nombreAllumettes);
+
+            //Maximum d'allumette a retirer
+            Console.Write("Nombre d'allumettes : ");
+            int maximumParTour = int.Parse(Console.ReadLine());
 
 
 
@@ -193,7 +208,7 @@ namespace I2TD4JeuAllumettes
 
                 //Etape3 ******* Allumettes à retirer
                 Console.Write("Nombre d'allumettes à retirer : ");
-                int nombreARetirer = DemanderNombreAllumettesARetirer(3);
+                int nombreARetirer = DemanderNombreAllumettesARetirer(maximumParTour);
 
                 for (int i = 0; i < nombreARetirer; i++)
                 {
