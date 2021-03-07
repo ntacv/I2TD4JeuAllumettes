@@ -75,7 +75,7 @@ namespace I2TD4JeuAllumettes
             bool position = false;
             if (tableau != null && tableau.Length != 0)
             {
-                if (index >= 0 && index < tableau.Length)
+                if (index >= 0 && index < tableau.Length && tableau[index]==true)
                 {
                     position = true;
                 }
@@ -84,7 +84,7 @@ namespace I2TD4JeuAllumettes
         }
         static bool RetirerUneAllumette(bool[] tasAllumettes, int index)
         {
-            bool possible;
+            bool possible = false;
             if (tasAllumettes != null && tasAllumettes.Length != 0)
             {
                 if (PositionValide(tasAllumettes, index))
@@ -92,14 +92,6 @@ namespace I2TD4JeuAllumettes
                     tasAllumettes[index] = false;
                     possible = true;
                 }
-                else
-                {
-                    possible = false;
-                }
-            }
-            else
-            {
-                possible = false;
             }
             return possible;
         }
@@ -125,22 +117,24 @@ namespace I2TD4JeuAllumettes
 
             int valeur = int.Parse(Console.ReadLine());
 
-            while (valeur <= 0 && valeur > max)
+            while (valeur <= 0 || valeur > max)
             {
+                Console.Write("Mauvaise entrée, recommencez : ");
                 valeur = int.Parse(Console.ReadLine());
             }
             return valeur;
         }
-        static int DemanderIndexARetirer(bool[] tasAllumerttes)
+        static int DemanderIndexARetirer(bool[] tasAllumettes)
         {
             int valeur = int.Parse(Console.ReadLine());
 
-            while (valeur <= 0 && valeur > tasAllumerttes.Length)
+            while (valeur <= 0 || valeur > tasAllumettes.Length)
             {
+                Console.Write("Mauvaise entrée, recommencez : ");
                 valeur = int.Parse(Console.ReadLine());
             }
+            //return -1 pour repasser l'index selon les positions dans le tableau
             return valeur - 1;
-
         }
         static bool PartieGagnee(bool[] tasAllumettes)
         {
@@ -201,7 +195,7 @@ namespace I2TD4JeuAllumettes
 
                 //Etape 1 ****** Qui joue
                 noJoueur = (noJoueur % 2) + 1;
-                Console.WriteLine("C'est à " + noJoueur);
+                Console.WriteLine("C'est au joueur " + noJoueur);
 
                 //Etape 2 ****** Le nombre d'allumettes à tirer
                 Console.WriteLine("Il reste " + NombreAllumettesRestantes(allumettes) + " d'allumettes");
@@ -210,14 +204,26 @@ namespace I2TD4JeuAllumettes
                 Console.Write("Nombre d'allumettes à retirer : ");
                 int nombreARetirer = DemanderNombreAllumettesARetirer(maximumParTour);
 
+                int indexARetirer;
                 for (int i = 0; i < nombreARetirer; i++)
                 {
                     Console.Write("A quelle position : ");
-                    int index = DemanderIndexARetirer(allumettes);
-                    if (PositionValide(allumettes, index))
+                    /*
+                    do
                     {
-                        RetirerUneAllumette(allumettes, index);
+                        indexARetirer = DemanderIndexARetirer(allumettes);
+                        RetirerUneAllumette(allumettes, indexARetirer);
+
+                    } while (!PositionValide(allumettes, indexARetirer));
+                    */
+                    indexARetirer = DemanderIndexARetirer(allumettes);
+                    
+                    while (!PositionValide(allumettes, indexARetirer))
+                    {
+                        Console.Write("Mauvaise entrée, recommencez : ");
+                        indexARetirer = DemanderIndexARetirer(allumettes);
                     }
+                    RetirerUneAllumette(allumettes, indexARetirer);
                 }
 
 
