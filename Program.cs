@@ -59,16 +59,16 @@ namespace I2TD4JeuAllumettes
             }
             Console.WriteLine();
         }
-        static bool valeurValide(int valeur, int min, int max)
+        static int valeurValide(int min, int max)
         {
-            bool valide = false;
+            int valeur;
 
-            if(valeur<max && valeur > min)
+            do
             {
-                valide = true;
-            }
+                valeur = int.Parse(Console.ReadLine());
+            } while (valeur > max && valeur < min);
 
-            return valide;
+            return valeur;
         }
         static bool PositionValide(bool[] tableau, int index)
         {
@@ -180,14 +180,14 @@ namespace I2TD4JeuAllumettes
         static void Main(string[] args)
         {
             Console.Write("Nombre d'allumettes : ");
-            int nombreAllumettes = int.Parse(Console.ReadLine());
+            int nombreAllumettes = valeurValide(0,99);
             
             //On initialise les allumettes
             bool[] allumettes = CreerTasAllumettes(nombreAllumettes);
 
             //Maximum d'allumette a retirer
-            Console.Write("Nombre d'allumettes : ");
-            int maximumParTour = int.Parse(Console.ReadLine());
+            Console.Write("Maximum d'allumettes par tour : ");
+            int maximumParTour = valeurValide(0,10);
 
 
 
