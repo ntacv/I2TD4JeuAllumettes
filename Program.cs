@@ -21,10 +21,19 @@ namespace I2TD4JeuAllumettes
 
         static void AfficherTasAlumettes(bool[] tasAlumettes)
         {
+            
             for (int i = 0; i < tasAlumettes.Length; i++)
             {
-                Console.Write("  " + (i + 1) + " ");
+                if (i < 10){
+                    Console.Write("  " + (i + 1) + "  ");
+                }
+                else{
+                    Console.Write(" " + (i + 1) + " ");
+                }
+
             }
+
+
             Console.WriteLine("");
             for (int i = 0; i < tasAlumettes.Length; i++)
             {
