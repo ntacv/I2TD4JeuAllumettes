@@ -174,14 +174,14 @@ namespace I2TD4JeuAllumettes
         static void Main(string[] args)
         {
             Console.Write("Nombre d'allumettes : ");
-            int nombreAllumettes = valeurValide(0,99);
+            int nombreAllumettes = valeurValide(3,99);
             
             //On initialise les allumettes
             bool[] allumettes = CreerTasAllumettes(nombreAllumettes);
 
             //Maximum d'allumette a retirer
             Console.Write("Maximum d'allumettes par tour : ");
-            int maximumParTour = valeurValide(0,10);
+            int maximumParTour = valeurValide(1,10);
 
 
 
