@@ -251,7 +251,7 @@ namespace I2TD4JeuAllumettes
             }
 
 
-
+            Console.ReadKey();
         }
     }
 }
